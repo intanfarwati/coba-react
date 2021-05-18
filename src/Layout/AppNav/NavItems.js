@@ -295,6 +295,10 @@ export const FormsNav = [
                 to: '#/forms/controls',
             },
             {
+                label: 'Biodata',
+                to: '#/forms/biodata',
+            },
+            {
                 label: 'Layouts',
                 to: '#/forms/layouts',
             },

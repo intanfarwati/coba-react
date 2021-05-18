@@ -6,7 +6,7 @@ import {Route} from 'react-router-dom';
 import FormElementsLayouts from "./Elements/Layouts/";
 import FormElementsControls from "./Elements/Controls/";
 import FormElementsValidation from "./Elements/Validation/";
-
+import FormBiodata from "../biodata";
 import FormWizardVar1 from './Elements/Wizard/Examples/Variation1';
 import FormWizardVar2 from './Elements/Wizard/Examples/Variation2';
 import FormWizardVar3 from './Elements/Wizard/Examples/Variation3';
@@ -55,6 +55,7 @@ const Forms = ({match}) => (
                     <Route path={`${match.url}/wizard-2`} component={FormWizardVar2}/>
                     <Route path={`${match.url}/wizard-3`} component={FormWizardVar3}/>
                     <Route path={`${match.url}/sticky-headers`} component={FormElementsSticky}/>
+                    <Route path={`${match.url}/biodata`} component={FormBiodata}/>
 
                     {/* Form Components */}
 
