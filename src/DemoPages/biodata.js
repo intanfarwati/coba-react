@@ -17,6 +17,10 @@ import {
 
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
+function LabelBaru(props) {
+    return <label>{props.name}</label>
+}
+
 class Biodata extends Component {
     render() {
         return (
@@ -36,7 +40,7 @@ class Biodata extends Component {
                                     <CardTitle>Form Biodata</CardTitle>
                                     <Form>
                                         <FormGroup>
-                                            <Label for="exampleName">Name</Label>
+                                            <LabelBaru name={"Nameeeeee"}/>
                                             <Input type="text" name="name" id="exampleName"
                                                    placeholder="Input Name"/>
                                         </FormGroup>
@@ -44,11 +48,6 @@ class Biodata extends Component {
                                             <Label for="exampleEmail">Email</Label>
                                             <Input type="email" name="email" id="exampleEmail"
                                                    placeholder="Input Email"/>
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <Label for="examplePassword">Password</Label>
-                                            <Input type="password" name="password" id="examplePassword"
-                                                   placeholder="Type Password"/>
                                         </FormGroup>
                                         <FormGroup>
                                             <Label for="religion">Religion</Label>
