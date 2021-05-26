@@ -17,6 +17,7 @@ const Charts = lazy(() => import('../../DemoPages/Charts'));
 const Forms = lazy(() => import('../../DemoPages/Forms'));
 const Tables = lazy(() => import('../../DemoPages/Tables'));
 
+const Product = lazy(() => import('../../DemoPages/Product'));
 const AppMain = () => {
 
     return (
@@ -183,6 +184,25 @@ const AppMain = () => {
             }>
                 <Route path="/dashboards" component={Dashboards}/>
             </Suspense>
+
+
+            {/*Products*/}
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-grid-cy"/>
+                        </div>
+                        <h6 className="mt-3">
+                            You are redirecting to Products
+                            <small>Happy Shopping!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/product" component={Product}/>
+            </Suspense>
+
 
             <Route exact path="/" render={() => (
                 <Redirect to="/dashboards/crm"/>
