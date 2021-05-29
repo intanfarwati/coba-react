@@ -7,6 +7,7 @@ import ResizeDetector from 'react-resize-detector';
 
 
 import AppMain from '../../Layout/AppMain';
+import ProductMain from '../Product/index';
 
 class Main extends React.Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class Main extends React.Component {
                             {'sidebar-mobile-open': enableMobileMenu},
                             {'body-tabs-shadow-btn': enablePageTabsAlt},
                         )}>
-                            <AppMain/>
+                            <ProductMain/>
                         </div>
                     </Fragment>
                 )}

@@ -1,34 +1,42 @@
-import React, {Fragment} from "react";
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { Route, Redirect} from 'react-router-dom';
+import React, {Suspense, lazy, Fragment} from 'react';
+import Loader from 'react-loaders'
 
-import AppHeader from "../../Layout/AppHeader";
-import {Row} from "reactstrap";
-import ThisCard from "./Card/Card";
+import {
+    ToastContainer,
+} from 'react-toastify';
 
-const Home = ({match}) => {
+const Product = lazy(() => import('../Product/Redirect'));
+const AppMain = () => {
+
     return (
         <Fragment>
-            <CSSTransitionGroup
-                component="div"
-                transitionName="TabsAnimation"
-                transitionAppear={true}
-                transitionAppearTimeout={0}
-                transitionEnter={false}
-                transitionLeave={false}>
-                <AppHeader/>
-                <div className="app-main">
-                    <div className="app-main__outer">
-                        <div className="app-main__inner">
-                            <Row>
-                                <ThisCard/>
-                            </Row>
+
+
+            {/*Products*/}
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-grid-cy"/>
                         </div>
+                        <h6 className="mt-3">
+                            You are redirecting to Products
+                            <small>Happy Shopping!</small>
+                        </h6>
                     </div>
                 </div>
-            </CSSTransitionGroup>
+            }>
+                <Route path="/product" component={Product}/>
+            </Suspense>
+
+
+            <Route exact path="/" render={() => (
+                <Redirect to="/product"/>
+            )}/>
+            <ToastContainer/>
         </Fragment>
     )
-}
+};
 
-
-export default Home;
+export default AppMain;
