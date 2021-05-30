@@ -14,7 +14,7 @@ const ThisCard = (props)=> (
                     <br /> Stock: {props.stock}
                     </CardSubtitle>
                     <CardText >
-                        Rp.{props.price}
+                        <strong>Rp.{props.price}</strong>
                     </CardText>
                 </CardBody>
                 <CardFooter>

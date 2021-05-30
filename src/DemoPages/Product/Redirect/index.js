@@ -5,7 +5,8 @@ import AppHeader from "../../../Layout/AppHeader";
 import {Row} from "reactstrap";
 import ThisCard from "../Kartu";
 import AddProduct from "../Form";
-import Tabel from "../Tabel"
+import Tabel from "../Tabel";
+import HomePage from "../Home";
 import {Route} from "react-router-dom";
 import FormElementsControls from "../../Forms/Elements/Controls";
 
@@ -29,6 +30,9 @@ const Home = ({match}) => {
 
                             {/*Table Product*/}
                             <Route path={`${match.url}/table`} component={Tabel}/>
+
+                            {/*Table Product*/}
+                            <Route path={`${match.url}/home`} component={HomePage}/>
                         </div>
                     </div>
                 </div>

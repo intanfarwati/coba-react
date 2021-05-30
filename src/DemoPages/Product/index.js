@@ -6,7 +6,7 @@ import {
     ToastContainer,
 } from 'react-toastify';
 
-const Product = lazy(() => import('../Product/Redirect'));
+const Product = lazy(() => import('../Product/Home'));
 const AppMain = () => {
 
     return (
