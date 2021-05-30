@@ -41,7 +41,8 @@ class FormProduct extends React.Component {
     onSubmit = (e) => {
         const formData = new FormData();
         const json = JSON.stringify({
-            "name": this.state.name,
+            "productName": this.state.name,
+            "idCategory": this.state.idCategory,
             "stock": this.state.stock,
             "price": this.state.price
         });
@@ -49,7 +50,7 @@ class FormProduct extends React.Component {
             type: 'application/json'
         });
 
-        formData.append('idCategory', this.state.idCategory)
+        // formData.append('idCategory', this.state.idCategory)
         formData.append("pictureUrl", this.state.pictureUrl)
         formData.append('data', blobDoc)
         const config = {
@@ -78,7 +79,7 @@ class FormProduct extends React.Component {
     }
 
     handleChangeSelect(e){
-        this.setState({idCategory:e.value, name:e.label})
+        this.setState({idCategory:e.value})
     }
 
     componentDidMount(){
@@ -130,7 +131,7 @@ class FormProduct extends React.Component {
                                                         <Input type="file" name="pictureUrl" id="pictureUrl"
                                                                placeholder="Input Picture of Product" onChange={this.handleFileChange}/>
                                                     </FormGroup>
-                                                    <Button type="button" className="mt-1"
+                                                    <Button type="submit" className="mt-1" color="primary"
                                                             onClick={this.onSubmit}>Submit</Button>
                                                 </Form>
                                             </CardBody>

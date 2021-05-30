@@ -5,6 +5,7 @@ import AppHeader from "../../../Layout/AppHeader";
 import {Row} from "reactstrap";
 import ThisCard from "../Kartu";
 import AddProduct from "../Form";
+import Tabel from "../Tabel"
 import {Route} from "react-router-dom";
 import FormElementsControls from "../../Forms/Elements/Controls";
 
@@ -26,6 +27,8 @@ const Home = ({match}) => {
                             {/*Form Product*/}
                             <Route path={`${match.url}/add-product`} component={AddProduct}/>
 
+                            {/*Table Product*/}
+                            <Route path={`${match.url}/table`} component={Tabel}/>
                         </div>
                     </div>
                 </div>
