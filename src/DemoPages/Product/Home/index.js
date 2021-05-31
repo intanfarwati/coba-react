@@ -40,17 +40,13 @@ const Home = ({match}) => {
                 transitionEnter={false}
                 transitionLeave={false}>
                 <AppHeader/>
-                <div className="app-main">
-                    <div className="app-main__inner">
 
-                        <Row>
-                            {dataCard.map((card, index) => (
-                                <ThisCard key={index} id= {card.id} title={card.productName} category={card.categoryName}
-                                          stock={card.stock} price={card.price} image={imageArrayPath[index]}/>
-                            ))}
-                        </Row>
-                    </div>
-                </div>
+                <Row>
+                    {dataCard.map((card, index) => (
+                        <ThisCard key={index} id= {card.id} title={card.productName} category={card.categoryName}
+                                  stock={card.stock} price={card.price} image={imageArrayPath[index]}/>
+                    ))}
+                </Row>
             </CSSTransitionGroup>
         </Fragment>
     )
