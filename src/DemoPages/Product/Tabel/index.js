@@ -3,7 +3,7 @@ import ReactTable from "react-table";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import axios from "axios";
 import AppHeader from "../../../Layout/AppHeader";
-import { ButtonToggle, Card, CardBody, CardFooter, CardTitle} from "reactstrap";
+import {Button, ButtonToggle, Card, CardBody, CardFooter, CardGroup, CardSubtitle, CardTitle} from "reactstrap";
 import styled from 'styled-components';
 
 
@@ -16,20 +16,29 @@ const types = ['PDF', 'EXCEL'];
 function ToggleGroup() {
     const [active, setActive] = useState(types[0]);
     return (
-        <ButtonGroup>
-            {types.map(type => (
-                <ButtonToggle
-                    key={type}
-                    active={active === type}
-                    onClick={() => setActive(type)}
-                    color={"purple"}
-                >
-                    {type}
-                </ButtonToggle>
-            ))}
-        </ButtonGroup>
+        <div>
+            <CardTitle>Download the report of all products uploaded:</CardTitle>
+            <ButtonGroup>
+                {types.map(type => (
+                    <ButtonToggle
+                        key={type}
+                        active={active === type}
+                        onClick={() => setActive(type)}
+                    >
+                        {type}
+                    </ButtonToggle>
+                ))}
+            </ButtonGroup></div>
     );
-}
+};
+
+// const getPDF = () => {
+//     axios.get('http://localhost:2222/getReport')
+// };
+
+// const getEXCEL = () => {
+//     axios.get('http://localhost:2222/getReportExcel')
+// };
 
 class Tabel extends React.Component {
     constructor() {
@@ -46,6 +55,39 @@ class Tabel extends React.Component {
                 console.log(res)
             })
     }
+
+    async getPDF() {
+        // await axios.get('http://localhost:2222/getReport', {
+        //     headers: {'Content-Type': 'application/PDF'}})
+        axios({
+            url: 'http://localhost:2222/getReport',
+            method: 'GET',
+            responseType: 'blob', // important
+        }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.pdf');
+            document.body.appendChild(link);
+            link.click();
+        });
+    };
+
+    async getEXCEL() {
+        // await axios.get('http://localhost:2222/getReportExcel')
+        axios({
+            url: 'http://localhost:2222/getReportExcel',
+            method: 'GET',
+            responseType: 'blob', // important
+        }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.xlsx');
+            document.body.appendChild(link);
+            link.click();
+        });
+    };
 
     render() {
         return (
@@ -93,9 +135,26 @@ class Tabel extends React.Component {
                                             defaultPageSize={5}
                                             className="-striped -highlight"
                                 />
-                                <CardFooter>
-                                    <ToggleGroup/>
-                                </CardFooter>
+                                <CardTitle><br/>Download the report of all products uploaded:<br/></CardTitle>
+                                <ButtonGroup>
+                                    <br/>
+                                    <Button type="button" className="mt-1" color="primary"
+                                            onClick={this.getPDF}>PDF</Button>
+                                    <Button type="button" className="mt-1" color="warning"
+                                            onClick={this.getEXCEL}>EXCEL</Button>
+                                </ButtonGroup>
+
+                                {/*<CardFooter>*/}
+                                {/*    /!*<div><ToggleGroup/></div>*!/*/}
+                                {/*    <CardTitle>Download the report of all products uploaded:<br/></CardTitle>*/}
+                                {/*    <br/>*/}
+                                {/*    <ButtonGroup>*/}
+                                {/*        <br/>*/}
+                                {/*        <Button type="button" className="mt-1" color="primary"*/}
+                                {/*                onClick={this.getPDF}>PDF</Button>*/}
+                                {/*        <Button type="button" className="mt-1" color="warning"*/}
+                                {/*                onClick={this.getEXCEL}>EXCEL</Button>*/}
+                                {/*    </ButtonGroup></CardFooter>*/}
                             </CardBody>
                         </div>
                     </Card>

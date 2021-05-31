@@ -24,7 +24,7 @@ class FormProduct extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectOptions : [],
+            selectOptions: [],
             idCategory: "",
             categoryName: ''
         };
@@ -62,15 +62,15 @@ class FormProduct extends React.Component {
             .then(res => console.log(res.data))
     }
 
-    async getOptions(){
+    async getOptions() {
         const res = await axios.get('http://localhost:2222/api/productcategory', {
-            headers: { 'Content-Type': 'application/json'}
+            headers: {'Content-Type': 'application/json'}
         })
         const data = res.data
 
         const options = data.map(d => ({
-            "value" : d.id,
-            "label" : d.categoryName
+            "value": d.id,
+            "label": d.categoryName
 
         }))
 
@@ -78,11 +78,11 @@ class FormProduct extends React.Component {
 
     }
 
-    handleChangeSelect(e){
-        this.setState({idCategory:e.value})
+    handleChangeSelect(e) {
+        this.setState({idCategory: e.value})
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getOptions()
     }
 
@@ -107,26 +107,32 @@ class FormProduct extends React.Component {
                                             <FormGroup>
                                                 <Label for="name">Product Name</Label>
                                                 <Input type="text" name="name" id="name"
-                                                       placeholder="Input Name of Product" onChange={this.handleChange}/>
+                                                       placeholder="Input Name of Product"
+                                                       onChange={this.handleChange}/>
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="category">Category Product</Label>
-                                                <Select name="idCategory" id="idCategory" options={this.state.selectOptions} onChange={this.handleChangeSelect.bind(this)} />
+                                                <Select name="idCategory" id="idCategory"
+                                                        options={this.state.selectOptions}
+                                                        onChange={this.handleChangeSelect.bind(this)}/>
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="stock">Stock</Label>
                                                 <Input type="text" name="stock" id="stock"
-                                                       placeholder="Input Stock of Product" onChange={this.handleChange}/>
+                                                       placeholder="Input Stock of Product"
+                                                       onChange={this.handleChange}/>
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="price">Price</Label>
                                                 <Input type="text" name="price" id="price"
-                                                       placeholder="Input Price of Product" onChange={this.handleChange}/>
+                                                       placeholder="Input Price of Product"
+                                                       onChange={this.handleChange}/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <Label >Picture of Product</Label>
+                                                <Label>Picture of Product</Label>
                                                 <Input type="file" name="pictureUrl" id="pictureUrl"
-                                                       placeholder="Input Picture of Product" onChange={this.handleFileChange}/>
+                                                       placeholder="Input Picture of Product"
+                                                       onChange={this.handleFileChange}/>
                                             </FormGroup>
                                             <Button type="submit" className="mt-1" color="primary"
                                                     onClick={this.onSubmit}>Submit</Button>
