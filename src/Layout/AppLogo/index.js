@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 
 import { Slider } from 'react-burgers'
-
+import {Link} from "react-router-dom";
 import AppMobileMenu from '../AppMobileMenu';
 
 import {
@@ -41,17 +41,18 @@ class HeaderLogo extends React.Component {
             <Fragment>
                 <div className="app-header__logo">
                     <div className="logo-src"/>
-                    <div className="header__pane ml-auto">
-                        <div onClick={this.toggleEnableClosedSidebar}>
-                        <Slider 
-                         width={26}
-                         lineHeight={2}
-                         lineSpacing={5}
-                         color='#6c757d'
-                         active={this.state.active}
-                         onClick={() => this.setState({ active: !this.state.active })}/>
-                        </div>
-                    </div>
+                    <Link to="/product/home" />
+                    {/*<div className="header__pane ml-auto">*/}
+                    {/*    <div onClick={this.toggleEnableClosedSidebar}>*/}
+                    {/*    <Slider */}
+                    {/*     width={26}*/}
+                    {/*     lineHeight={2}*/}
+                    {/*     lineSpacing={5}*/}
+                    {/*     color='#6c757d'*/}
+                    {/*     active={this.state.active}*/}
+                    {/*     onClick={() => this.setState({ active: !this.state.active })}/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
                 <AppMobileMenu/>
             </Fragment>

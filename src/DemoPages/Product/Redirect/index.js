@@ -1,11 +1,14 @@
 import React, {Fragment} from "react";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-import AppHeader from "../../../Layout/AppHeader";
+import AppHeader from "../../../Layout/AppHeader/index2";
 import {Row} from "reactstrap";
 import ThisCard from "../Kartu";
 import AddProduct from "../Form";
 import Tabel from "../Tabel";
+import MakeUp from "../Home/makeup"
+import SkinCare from "../Home/skincare";
+import BodyCare from "../Home/bodycare";
 import HomePage from "../Home";
 import {Route} from "react-router-dom";
 import FormElementsControls from "../../Forms/Elements/Controls";
@@ -22,18 +25,25 @@ const Home = ({match}) => {
                 transitionLeave={false}>
                 <AppHeader/>
                 <div className="app-main">
-                    <div className="app-main__outer">
-                        <div className="app-main__inner">
+                    <div className="app-main__inner">
 
-                            {/*Form Product*/}
-                            <Route path={`${match.url}/add-product`} component={AddProduct}/>
+                        {/*Form Product*/}
+                        <Route path={`${match.url}/add-product`} component={AddProduct}/>
 
-                            {/*Table Product*/}
-                            <Route path={`${match.url}/table`} component={Tabel}/>
+                        {/*Table Product*/}
+                        <Route path={`${match.url}/table`} component={Tabel}/>
 
-                            {/*Table Product*/}
-                            <Route path={`${match.url}/home`} component={HomePage}/>
-                        </div>
+                        {/*Home Product*/}
+                        <Route path={`${match.url}/home`} component={HomePage}/>
+
+                        {/*Make Up Product*/}
+                        <Route path={`${match.url}/make-up`} component={MakeUp}/>
+
+                        {/*Skin Care Product*/}
+                        <Route path={`${match.url}/skin-care`} component={SkinCare}/>
+
+                        {/*Body Care Product*/}
+                        <Route path={`${match.url}/body-care`} component={BodyCare}/>
                     </div>
                 </div>
             </CSSTransitionGroup>

@@ -43,7 +43,7 @@ const Forms = ({match}) => (
         <AppHeader/>
         <div className="app-main">
             <AppSidebar/>
-            <div className="app-main__outer">
+            <div className="app-main__inner">
                 <div className="app-main__inner">
 
                     {/* Form Elements */}

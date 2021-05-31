@@ -6,7 +6,7 @@ import {
     ToastContainer,
 } from 'react-toastify';
 
-const Product = lazy(() => import('../Product/Home'));
+const Product = lazy(() => import('../Product/Redirect'));
 const AppMain = () => {
 
     return (
@@ -32,7 +32,7 @@ const AppMain = () => {
 
 
             <Route exact path="/" render={() => (
-                <Redirect to="/product"/>
+                <Redirect to="/product/home"/>
             )}/>
             <ToastContainer/>
         </Fragment>

@@ -6,13 +6,13 @@ import {Row} from "reactstrap";
 import ThisCard from "../Kartu";
 import axios from "axios";
 
-const Home = ({match}) => {
+const SkinCare = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product").then(res => {
+        axios.get("http://localhost:2222/api/product/category/2").then(res => {
             setDataCard(res.data)
 
             console.log(imageArrayPath)
@@ -23,7 +23,7 @@ const Home = ({match}) => {
         dataCard.map((data, index) => {
             axios.get('http://localhost:2222/api/product/getImage/' + data.id).then(res => {
                 imageArrayPath.push(res.data)
-                // console.log(res.data)
+                console.log(res.data)
                 console.log("udah ada")
             })
         })
@@ -57,4 +57,4 @@ const Home = ({match}) => {
 }
 
 
-export default Home;
+export default SkinCare;

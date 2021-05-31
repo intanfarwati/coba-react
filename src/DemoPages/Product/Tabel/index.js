@@ -66,7 +66,7 @@ class Tabel extends React.Component {
                                 },
                             ]
                         }]}
-                                    defaultPageSize={5}
+                                    defaultPageSize={10}
                                     className="-striped -highlight"
                                     />
                     </CardBody>

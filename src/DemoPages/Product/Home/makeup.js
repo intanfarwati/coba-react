@@ -6,13 +6,13 @@ import {Row} from "reactstrap";
 import ThisCard from "../Kartu";
 import axios from "axios";
 
-const Home = ({match}) => {
+const MakeUp = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product").then(res => {
+        axios.get("http://localhost:2222/api/product/category/1").then(res => {
             setDataCard(res.data)
 
             console.log(imageArrayPath)
@@ -57,4 +57,4 @@ const Home = ({match}) => {
 }
 
 
-export default Home;
+export default MakeUp;

@@ -17,7 +17,7 @@ import {
     Row
 } from "reactstrap";
 
-import AppHeader from "../../../Layout/AppHeader";
+import AppHeader from "../../../Layout/AppHeader/index2";
 import Select from "react-select";
 
 class FormProduct extends React.Component {
