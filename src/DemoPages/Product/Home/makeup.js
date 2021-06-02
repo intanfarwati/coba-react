@@ -15,19 +15,10 @@ const MakeUp = () => {
         axios.get("http://localhost:2222/api/product/category/1").then(res => {
             setDataCard(res.data)
 
-            console.log(imageArrayPath)
+            console.log(res.data)
         })
     }, [])
 
-    useEffect(() => {
-        dataCard.map((data, index) => {
-            axios.get('http://localhost:2222/api/product/getImage/' + data.id).then(res => {
-                imageArrayPath.push(res.data)
-                // console.log(res.data)
-                console.log("udah ada")
-            })
-        })
-    })
 
 
     return (
@@ -43,7 +34,7 @@ const MakeUp = () => {
             <Row>
                     {dataCard.map((card, index) => (
                         <ThisCard key={index} id= {card.id} title={card.productName} category={card.categoryName}
-                                  stock={card.stock} price={card.price} image={imageArrayPath[index]}/>
+                                  stock={card.stock} price={card.price} />
                     ))}
                 </Row>
             </CSSTransitionGroup>

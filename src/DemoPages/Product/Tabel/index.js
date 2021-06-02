@@ -5,32 +5,35 @@ import axios from "axios";
 import AppHeader from "../../../Layout/AppHeader";
 import {Button, ButtonToggle, Card, CardBody, CardFooter, CardGroup, CardSubtitle, CardTitle} from "reactstrap";
 import styled from 'styled-components';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTrash, faEdit, faFilePdf, faFileExcel} from "@fortawesome/free-solid-svg-icons";
+import Modal from "../Modal";
 
 
 const ButtonGroup = styled.div`
   display: flex;
 `;
 
-const types = ['PDF', 'EXCEL'];
 
-function ToggleGroup() {
-    const [active, setActive] = useState(types[0]);
-    return (
-        <div>
-            <CardTitle>Download the report of all products uploaded:</CardTitle>
-            <ButtonGroup>
-                {types.map(type => (
-                    <ButtonToggle
-                        key={type}
-                        active={active === type}
-                        onClick={() => setActive(type)}
-                    >
-                        {type}
-                    </ButtonToggle>
-                ))}
-            </ButtonGroup></div>
-    );
-};
+
+// function ToggleGroup() {
+//     const [active, setActive] = useState(types[0]);
+//     return (
+//         <div>
+//             <CardTitle>Download the report of all products uploaded:</CardTitle>
+//             <ButtonGroup>
+//                 {types.map(type => (
+//                     <ButtonToggle
+//                         key={type}
+//                         active={active === type}
+//                         onClick={() => setActive(type)}
+//                     >
+//                         {type}
+//                     </ButtonToggle>
+//                 ))}
+//             </ButtonGroup></div>
+//     );
+// };
 
 // const getPDF = () => {
 //     axios.get('http://localhost:2222/getReport')
@@ -45,7 +48,9 @@ class Tabel extends React.Component {
         super();
         this.state = {
             dataTabel: [],
+            modal: false
         };
+        this.toggle = this.toggle.bind(this);
     }
 
     componentDidMount() {
@@ -91,6 +96,21 @@ class Tabel extends React.Component {
             link.click();
         });
     };
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
+    editData(){
+        // axios.get(`http://localhost:2222/api/product`)
+        //     .then(res => {
+        //         this.setState({dataTabel: res.data})
+        //         console.log(res)
+        //     })
+
+    }
 
     render() {
         return (
@@ -143,11 +163,12 @@ class Tabel extends React.Component {
                                                 filterable: false,
                                                 Cell:row =>(
                                                     <div className="d-block w-100 text-center">
-                                                        <Button outLine className="mb-2 mr-2 btn-pill" color="primary">
-                                                            <i className="pe-7s-tools btn-icon-wrapper"> </i>
+                                                        <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={this.toggle}>
+                                                            <FontAwesomeIcon icon={faEdit}/>
+
                                                         </Button>
-                                                        <Button outLine className="mb-2 mr-2 btn-pill" color="primary">
-                                                            <i className="pe-7s-edit btn-icon-wrapper"> </i>
+                                                        <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={this.toggle}>
+                                                            <FontAwesomeIcon icon={faTrash}/>
                                                         </Button>
 
                                                     </div>
@@ -159,15 +180,19 @@ class Tabel extends React.Component {
                                             defaultPageSize={5}
                                             className="-striped -highlight"
                                 />
-                                <CardTitle><br/>Download the report of all products uploaded:<br/></CardTitle>
-                                <ButtonGroup>
+                                <CardTitle style={{fontSize:"18px"}}><br/>Download the report of all products uploaded:<br/></CardTitle>
+                                <ButtonGroup >
                                     <br/>
-                                    <Button type="button" className="mt-1" color="primary"
-                                            onClick={this.getPDF}>PDF</Button>
-                                    <Button type="button" className="mt-1" color="warning"
-                                            onClick={this.getEXCEL}>EXCEL</Button>
+                                    <Button type="button" className="mt-1" color="danger"
+                                            onClick={this.getPDF} style={{fontSize:"20px", margin:"5px"}}>
+                                        <FontAwesomeIcon icon={faFilePdf} /> <span style={{fontSize:"15px"}}>PDF</span>
+                                    </Button>
+                                    <Button type="button" className="mt-1" color="success"
+                                            onClick={this.getEXCEL} style={{fontSize:"20px", margin:"5px"}}>
+                                        <FontAwesomeIcon icon={faFileExcel} /> <span style={{fontSize:"15px"}}>EXCEL</span>
+                                    </Button>
                                 </ButtonGroup>
-
+                                <Modal toggle={this.toggle} modal={this.state.modal}/>
                                 {/*<CardFooter>*/}
                                 {/*    /!*<div><ToggleGroup/></div>*!/*/}
                                 {/*    <CardTitle>Download the report of all products uploaded:<br/></CardTitle>*/}
@@ -182,9 +207,9 @@ class Tabel extends React.Component {
                             </CardBody>
                         </div>
                     </Card>
+
                 </CSSTransitionGroup>
             </Fragment>
-
         )
     }
 };

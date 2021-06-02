@@ -19,15 +19,6 @@ const Home = ({match}) => {
         })
     }, [])
 
-    useEffect(() => {
-        dataCard.map((data, index) => {
-            axios.get('http://localhost:2222/api/product/getImage/' + data.id).then(res => {
-                imageArrayPath.push(res.data)
-                // console.log(res.data)
-                console.log("udah ada")
-            })
-        })
-    })
 
 
     return (

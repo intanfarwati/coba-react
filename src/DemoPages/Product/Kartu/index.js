@@ -2,30 +2,7 @@ import React, {Component, Fragment, useEffect, useState} from 'react';
 import {Card, CardBody, CardImg, CardSubtitle, CardTitle, Col, CardFooter, Button, CardText} from "reactstrap";
 import axios from "axios";
 
-const onSubmit = (props) => {
-    const formData = new FormData();
 
-    const json = JSON.stringify({
-        "idProduct": 2, //perlu diganti
-        "quantity": 1
-    });
-    console.log(json)
-    const blobDoc = new Blob([json], {
-        type: 'application/json'
-    });
-
-    formData.append('data', blobDoc)
-
-    const config = {
-        headers: {
-            'content-type': 'multipart/mixed'
-        }
-    }
-    console.log(formData)
-    axios.post("http://localhost:2222/api/cart", formData, config)
-        .then(res => console.log(res.data))
-
-}
 //
 // var Id = props.id;
 
@@ -39,6 +16,31 @@ const ThisCard = (props) => {
             })
         }
     )
+
+    const onSubmit = () => {
+        const formData = new FormData();
+
+        const json = JSON.stringify({
+            "idProduct": props.id, //perlu diganti
+            "quantity": 1
+        });
+        console.log(json)
+        const blobDoc = new Blob([json], {
+            type: 'application/json'
+        });
+
+        formData.append('data', blobDoc)
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/mixed'
+            }
+        }
+        console.log(formData)
+        axios.post("http://localhost:2222/api/cart", formData, config)
+            .then(res => console.log(res.data))
+
+    }
     return (
         <Fragment>
             <Col md="3">
