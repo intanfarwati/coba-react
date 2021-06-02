@@ -5,29 +5,57 @@ import AppHeader from "../../../Layout/AppHeader/index2";
 import {Row} from "reactstrap";
 import ThisCard from "../Kartu";
 import axios from "axios";
+import Image from "../../Components/GuidedTours/Examples/Image";
 
 const SkinCare = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
-    let imageArrayPath = [];
+    // const [images, setimages] = useState([])
+    // let imageArrayPath = [];
 
     useEffect(() => {
         axios.get("http://localhost:2222/api/product/category/2").then(res => {
             setDataCard(res.data)
 
-            console.log(imageArrayPath)
         })
     }, [])
 
-    useEffect(() => {
-        dataCard.map((data, index) => {
-            axios.get('http://localhost:2222/api/product/getImage/' + data.id).then(res => {
-                imageArrayPath.push(res.data)
-                console.log(res.data)
-                console.log("udah ada")
-            })
-        })
-    })
+    // useEffect(() => {
+    //     dataCard.map((data, index) => {
+    //         axios.get('http://localhost:2222/api/product/getImage/' + data.id).then(res => {
+    //             setimages(res.data)
+    //             // console.log(res.data)
+    //             console.log("udah ada")
+    //         })
+    //     })
+    // })
+
+    // function showImage() {
+    //     return images.map((img, index) => (
+    //         <Image
+    //             image={img.urls.regular}
+    //             index={index}
+    //             key={index}/>
+    //     ))
+    // };
+
+    {/*async function getGambar() {*/}
+    {/*    dataCard.map((data, index) => {*/}
+    {/*        axios({*/}
+    {/*            url: 'http://localhost:2222/api/product/getImage/' + data.id,*/}
+    {/*            method: 'GET',*/}
+    {/*            responseType: 'blob', // important*/}
+    //         }).then((response) => {
+    //             const url = window.URL.createObjectURL(new Blob([response.data]));
+    //             const link = document.createElement('img');
+    //             console.log(url);
+    //             console.log("ini link" + link);
+    //             link.src = url;
+    //             // link.setAttribute('download', 'file.pdf');
+    //             return link.src
+    //         });
+    //     })
+    // }
 
 
     return (
@@ -40,10 +68,10 @@ const SkinCare = () => {
                 transitionEnter={false}
                 transitionLeave={false}>
 
-            <Row>
+                <Row>
                     {dataCard.map((card, index) => (
-                        <ThisCard key={index} id= {card.id} title={card.productName} category={card.categoryName}
-                                  stock={card.stock} price={card.price} image={imageArrayPath[index]}/>
+                        <ThisCard key={index} id={card.id} title={card.productName} category={card.categoryName}
+                                  stock={card.stock} price={card.price}/>
                     ))}
                 </Row>
             </CSSTransitionGroup>

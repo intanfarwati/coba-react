@@ -66,6 +66,8 @@ class Tabel extends React.Component {
         }).then((response) => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
+            console.log(url);
+            console.log(link);
             link.href = url;
             link.setAttribute('download', 'file.pdf');
             document.body.appendChild(link);
@@ -85,6 +87,7 @@ class Tabel extends React.Component {
             link.href = url;
             link.setAttribute('download', 'file.xlsx');
             document.body.appendChild(link);
+            console.log(document.body.appendChild(link))
             link.click();
         });
     };
@@ -131,7 +134,28 @@ class Tabel extends React.Component {
                                             accessor: 'categoryName',
                                         },
                                     ]
-                                }]}
+                                },
+                                    {
+                                        columns: [
+                                            {
+                                                Header: 'Actions',
+                                                accessor: 'actions',
+                                                filterable: false,
+                                                Cell:row =>(
+                                                    <div className="d-block w-100 text-center">
+                                                        <Button outLine className="mb-2 mr-2 btn-pill" color="primary">
+                                                            <i className="pe-7s-tools btn-icon-wrapper"> </i>
+                                                        </Button>
+                                                        <Button outLine className="mb-2 mr-2 btn-pill" color="primary">
+                                                            <i className="pe-7s-edit btn-icon-wrapper"> </i>
+                                                        </Button>
+
+                                                    </div>
+                                    )
+                                            }
+                                        ]
+                                    }
+                                ]}
                                             defaultPageSize={5}
                                             className="-striped -highlight"
                                 />
