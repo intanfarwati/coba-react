@@ -17,10 +17,70 @@ import Select from "react-select";
 
 
 const ModalAja = (props) => {
-    const [data, setData]= useState([]);
+    const [data, setData] = useState([]);
+    const [idCategory, setIdCategory] = useState(data.idCategory);
+    const [selectOption, setSelectOption] = useState([]);
+    const [dataBaru, setDataBaru] = useState([]);
 
-    useEffect(()=> {
-        axios.get('http://localhost:2222/api/product/' + props.idPro).then(res=>{
+    const handleChange = (e) => {
+        dataBaru.name = e.target.value;
+        console.log("ini adalah" + dataBaru.name)
+    }
+
+    const handleFileChange = (e) => {
+        dataBaru.name = e.target.files[0]
+    }
+
+    const onSubmit = (e) => {
+        const formData = new FormData();
+        const json = JSON.stringify({
+            "productName": dataBaru.name,
+            "idCategory": idCategory,
+            "stock": dataBaru.stock,
+            "price": dataBaru.price
+        });
+        const blobDoc = new Blob([json], {
+            type: 'application/json'
+        });
+
+        // formData.append('idCategory', this.state.idCategory)
+        formData.append("pictureUrl", dataBaru.pictureUrl)
+        formData.append('data', blobDoc)
+        const config = {
+            headers: {
+                'content-type': 'multipart/mixed'
+            }
+        }
+        axios.post("http://localhost:2222/api/product/save", formData, config)
+            .then(res => console.log(res.data))
+    }
+
+    const getOptions = async () => {
+        const res = await axios.get('http://localhost:2222/api/productcategory', {
+            headers: {'Content-Type': 'application/json'}
+        })
+        const data = res.data
+
+        const options = data.map(d => ({
+            "value": d.id,
+            "label": d.categoryName
+
+        }))
+
+        setSelectOption(options)
+    }
+
+    const handleChangeSelect = (e) => {
+        setIdCategory(e.value)
+    }
+
+    useEffect(() => {
+        getOptions()
+    })
+
+
+    useEffect(() => {
+        axios.get('http://localhost:2222/api/product/' + props.idPro).then(res => {
             setData(res.data)
             console.log(res.data)
         })
@@ -39,34 +99,37 @@ const ModalAja = (props) => {
                                             <FormGroup>
                                                 <Label for="name">Product Name</Label>
                                                 <Input type="text" name="name" id="name"
-                                                       placeholder="Input Name of Product" value={data.productName}
-                                                       />
+                                                        placeholder={data.productName}
+                                                       onChange={handleChange}/>
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="category">Category Product</Label>
                                                 <Select name="idCategory" id="idCategory" value={data.idCategory}
-                                                        />
+                                                        options={selectOption}
+                                                        onChange={handleChangeSelect.bind(this)}/>
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="stock">Stock</Label>
                                                 <Input type="text" name="stock" id="stock"
                                                        placeholder="Input Stock of Product" value={data.stock}
-                                                      />
+                                                       onChange={handleChange}
+                                                />
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="price">Price</Label>
                                                 <Input type="text" name="price" id="price"
                                                        placeholder="Input Price of Product" value={data.price}
-                                                       />
+                                                       onChange={handleChange}
+                                                />
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label>Picture of Product</Label>
                                                 <Input type="file" name="pictureUrl" id="pictureUrl"
                                                        placeholder="Input Picture of Product"
-                                                       />
+                                                       onChange={handleFileChange}
+                                                />
                                             </FormGroup>
-                                            <Button type="submit" className="mt-1" color="primary"
-                                                   >Submit</Button>
+
                                         </Form>
                                     </CardBody>
                                 </Card>
@@ -76,7 +139,8 @@ const ModalAja = (props) => {
 
                     <ModalFooter>
                         <Button color="link" onClick={props.toggle}>Cancel</Button>
-                        <Button color="primary" onClick={props.toggle}>Do Something</Button>{' '}
+                        <Button type="button" className="mt-1" color="primary"
+                        onClick={onSubmit}>Submit</Button>
                     </ModalFooter>
                 </Modal>
             </span>

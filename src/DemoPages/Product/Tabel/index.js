@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import ReactTable from "react-table";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import axios from "axios";
@@ -71,6 +71,13 @@ class Tabel extends React.Component {
         });
     }
 
+    hapus = (id) => {
+       axios.delete(`http://localhost:2222/api/product/${id}`).then((response) => {
+            props.history.push("/product");
+
+        })
+    }
+
 
     // editData(){
     //     // axios.get(`http://localhost:2222/api/product`)
@@ -131,7 +138,7 @@ class Tabel extends React.Component {
                                                     <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={()=>this.toggle(row.original)} >
                                                         <FontAwesomeIcon icon={faEdit}/>
                                                     </Button>
-                                                    <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={()=>this.toggle(row.original)}>
+                                                    <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={()=>this.hapus(row.original.id)}>
                                                         <FontAwesomeIcon icon={faTrash}/>
                                                     </Button>
 
@@ -200,4 +207,4 @@ class Tabel extends React.Component {
     }
 };
 
-export default Tabel
+export default Tabel;
