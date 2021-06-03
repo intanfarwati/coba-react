@@ -2,53 +2,20 @@ import React, {Fragment, useState} from 'react';
 import ReactTable from "react-table";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import axios from "axios";
-import AppHeader from "../../../Layout/AppHeader";
 import {Button, ButtonToggle, Card, CardBody, CardFooter, CardGroup, CardSubtitle, CardTitle} from "reactstrap";
-import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash, faEdit, faFilePdf, faFileExcel} from "@fortawesome/free-solid-svg-icons";
-import Modal from "../Modal";
+import ModalAja from "../Modal";
 
 
-const ButtonGroup = styled.div`
-  display: flex;
-`;
-
-
-
-// function ToggleGroup() {
-//     const [active, setActive] = useState(types[0]);
-//     return (
-//         <div>
-//             <CardTitle>Download the report of all products uploaded:</CardTitle>
-//             <ButtonGroup>
-//                 {types.map(type => (
-//                     <ButtonToggle
-//                         key={type}
-//                         active={active === type}
-//                         onClick={() => setActive(type)}
-//                     >
-//                         {type}
-//                     </ButtonToggle>
-//                 ))}
-//             </ButtonGroup></div>
-//     );
-// };
-
-// const getPDF = () => {
-//     axios.get('http://localhost:2222/getReport')
-// };
-
-// const getEXCEL = () => {
-//     axios.get('http://localhost:2222/getReportExcel')
-// };
 
 class Tabel extends React.Component {
     constructor() {
         super();
         this.state = {
             dataTabel: [],
-            modal: false
+            modal: false,
+            ini: 0
         };
         this.toggle = this.toggle.bind(this);
     }
@@ -97,20 +64,22 @@ class Tabel extends React.Component {
         });
     };
 
-    toggle() {
+    toggle(dat) {
         this.setState({
-            modal: !this.state.modal
+            modal: !this.state.modal,
+            ini: dat.id,
         });
     }
 
-    editData(){
-        // axios.get(`http://localhost:2222/api/product`)
-        //     .then(res => {
-        //         this.setState({dataTabel: res.data})
-        //         console.log(res)
-        //     })
 
-    }
+    // editData(){
+    //     // axios.get(`http://localhost:2222/api/product`)
+    //     //     .then(res => {
+    //     //         this.setState({dataTabel: res.data})
+    //     //         console.log(res)
+    //     //     })
+    //
+    // }
 
     render() {
         return (
@@ -153,35 +122,51 @@ class Tabel extends React.Component {
                                             Header: 'Product Category',
                                             accessor: 'categoryName',
                                         },
+                                        {
+                                            Header: 'Actions',
+                                            accessor: 'actions',
+                                            filterable: false,
+                                            Cell:row =>(
+                                                <div className="d-block w-100 text-center">
+                                                    <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={()=>this.toggle(row.original)} >
+                                                        <FontAwesomeIcon icon={faEdit}/>
+                                                    </Button>
+                                                    <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={()=>this.toggle(row.original)}>
+                                                        <FontAwesomeIcon icon={faTrash}/>
+                                                    </Button>
+
+                                                </div>
+                                            )
+                                        }
                                     ]
                                 },
-                                    {
-                                        columns: [
-                                            {
-                                                Header: 'Actions',
-                                                accessor: 'actions',
-                                                filterable: false,
-                                                Cell:row =>(
-                                                    <div className="d-block w-100 text-center">
-                                                        <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={this.toggle}>
-                                                            <FontAwesomeIcon icon={faEdit}/>
-
-                                                        </Button>
-                                                        <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={this.toggle}>
-                                                            <FontAwesomeIcon icon={faTrash}/>
-                                                        </Button>
-
-                                                    </div>
-                                    )
-                                            }
-                                        ]
-                                    }
+                                    // {
+                                    //     columns: [
+                                    //         {
+                                    //             Header: 'Actions',
+                                    //             accessor: 'actions',
+                                    //             filterable: false,
+                                    //             Cell:row =>(
+                                    //                 <div className="d-block w-100 text-center">
+                                    //                     <Button outLine className="mb-2 mr-2 btn-pill" color="primary" onClick={this.toggle} >
+                                    //                         <FontAwesomeIcon icon={faEdit}/>
+                                    //                         <ModalAja toggle={this.toggle} modal={this.state.modal} id={row.original.id}/>
+                                    //                     </Button>
+                                    //                     <Button outLine className="mb-2 mr-2 btn-pill" color="primary" >
+                                    //                         <FontAwesomeIcon icon={faTrash}/>
+                                    //                     </Button>
+                                    //
+                                    //                 </div>
+                                    // )
+                                    //         }
+                                    //     ]
+                                    // }
                                 ]}
                                             defaultPageSize={5}
                                             className="-striped -highlight"
                                 />
                                 <CardTitle style={{fontSize:"18px"}}><br/>Download the report of all products uploaded:<br/></CardTitle>
-                                <ButtonGroup >
+
                                     <br/>
                                     <Button type="button" className="mt-1" color="danger"
                                             onClick={this.getPDF} style={{fontSize:"20px", margin:"5px"}}>
@@ -191,8 +176,7 @@ class Tabel extends React.Component {
                                             onClick={this.getEXCEL} style={{fontSize:"20px", margin:"5px"}}>
                                         <FontAwesomeIcon icon={faFileExcel} /> <span style={{fontSize:"15px"}}>EXCEL</span>
                                     </Button>
-                                </ButtonGroup>
-                                <Modal toggle={this.toggle} modal={this.state.modal}/>
+
                                 {/*<CardFooter>*/}
                                 {/*    /!*<div><ToggleGroup/></div>*!/*/}
                                 {/*    <CardTitle>Download the report of all products uploaded:<br/></CardTitle>*/}
@@ -207,6 +191,8 @@ class Tabel extends React.Component {
                             </CardBody>
                         </div>
                     </Card>
+                    <ModalAja toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} />
+
 
                 </CSSTransitionGroup>
             </Fragment>

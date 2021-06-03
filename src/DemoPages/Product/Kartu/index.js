@@ -47,7 +47,7 @@ const ThisCard = (props) => {
                 <Card className="main-card mb-3">
                     <CardImg top width="100%"
                              src={"data:image/*;base64," + img}
-                             alt={props.title}/>
+                             alt={props.title} style={{backgroundSize:"cover", height:"300px"}}/>
                     <CardBody>
                         <CardTitle>{props.title}</CardTitle>
                         <CardSubtitle>{props.category}
