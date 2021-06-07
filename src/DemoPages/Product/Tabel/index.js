@@ -73,7 +73,7 @@ class Tabel extends React.Component {
 
     hapus = (id) => {
        axios.delete(`http://localhost:2222/api/product/${id}`).then((response) => {
-            props.history.push("/product");
+            // this.props.push("http://localhost:2222/api/product");
 
         })
     }

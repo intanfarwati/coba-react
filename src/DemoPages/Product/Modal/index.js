@@ -17,34 +17,30 @@ import Select from "react-select";
 
 
 const ModalAja = (props) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState("");
     const [idCategory, setIdCategory] = useState(data.idCategory);
-    const [selectOption, setSelectOption] = useState([]);
-    const [dataBaru, setDataBaru] = useState([]);
+    const [selectOption, setSelectOption] = useState();
+    const [productName, setProductName] = useState();
+    const [stock, setStock] = useState();
+    const [price, setPrice] = useState();
+    const [picture, setPicture] = useState();
 
-    const handleChange = (e) => {
-        dataBaru.name = e.target.value;
-        console.log("ini adalah" + dataBaru.name)
-    }
-
-    const handleFileChange = (e) => {
-        dataBaru.name = e.target.files[0]
-    }
 
     const onSubmit = (e) => {
         const formData = new FormData();
         const json = JSON.stringify({
-            "productName": dataBaru.name,
-            "idCategory": idCategory,
-            "stock": dataBaru.stock,
-            "price": dataBaru.price
+            "id": this.props.id,
+            "productName": productName == null ? this.props.productName : productName,
+            "idCategory": idCategory == null ? this.props.idCategory : idCategory,
+            "stock": stock == null ? this.props.stock : stock,
+            "price": price == null ? this.props.price : price
         });
         const blobDoc = new Blob([json], {
             type: 'application/json'
         });
 
         // formData.append('idCategory', this.state.idCategory)
-        formData.append("pictureUrl", dataBaru.pictureUrl)
+        formData.append("pictureUrl", picture)
         formData.append('data', blobDoc)
         const config = {
             headers: {
@@ -100,33 +96,33 @@ const ModalAja = (props) => {
                                                 <Label for="name">Product Name</Label>
                                                 <Input type="text" name="name" id="name"
                                                         placeholder={data.productName}
-                                                       onChange={handleChange}/>
+                                                       onChange={(e)=>{setProductName(e.value)}}/>
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="category">Category Product</Label>
-                                                <Select name="idCategory" id="idCategory" value={data.idCategory}
+                                                <Select name="idCategory" id="idCategory" placeholder={data.categoryName}
                                                         options={selectOption}
                                                         onChange={handleChangeSelect.bind(this)}/>
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="stock">Stock</Label>
                                                 <Input type="text" name="stock" id="stock"
-                                                       placeholder="Input Stock of Product" value={data.stock}
-                                                       onChange={handleChange}
+                                                       placeholder={data.stock}
+                                                       onChange={(e)=>{setStock(e.value)}}
                                                 />
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label for="price">Price</Label>
                                                 <Input type="text" name="price" id="price"
-                                                       placeholder="Input Price of Product" value={data.price}
-                                                       onChange={handleChange}
+                                                       placeholder={data.price}
+                                                       onChange={(e)=>{setPrice(e.value)}}
                                                 />
                                             </FormGroup>
                                             <FormGroup>
                                                 <Label>Picture of Product</Label>
                                                 <Input type="file" name="pictureUrl" id="pictureUrl"
                                                        placeholder="Input Picture of Product"
-                                                       onChange={handleFileChange}
+                                                       onChange={(e)=>{setPicture(e.files[0])}}
                                                 />
                                             </FormGroup>
 
