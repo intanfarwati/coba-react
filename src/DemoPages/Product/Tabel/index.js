@@ -15,7 +15,7 @@ class Tabel extends React.Component {
         this.state = {
             dataTabel: [],
             modal: false,
-            ini: 0
+            ini: 0,
         };
         this.toggle = this.toggle.bind(this);
     }
@@ -69,6 +69,7 @@ class Tabel extends React.Component {
             modal: !this.state.modal,
             ini: dat.id,
         });
+
     }
 
     hapus = (id) => {
@@ -198,7 +199,7 @@ class Tabel extends React.Component {
                             </CardBody>
                         </div>
                     </Card>
-                    <ModalAja toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} />
+                    <ModalAja toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} data={this.state.kirimData}/>
 
 
                 </CSSTransitionGroup>

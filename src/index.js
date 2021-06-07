@@ -9,6 +9,8 @@ import './assets/base.scss';
 import Main from './DemoPages/Main';
 import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
+import {BrowserRouter} from "react-router-dom";
+
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
@@ -16,9 +18,9 @@ const rootElement = document.getElementById('root');
 const renderApp = Component => {
     ReactDOM.render(
         <Provider store={store}>
-            <HashRouter>
+            <BrowserRouter>
                 <Component />
-            </HashRouter>
+            </BrowserRouter>
         </Provider>,
         rootElement
     );

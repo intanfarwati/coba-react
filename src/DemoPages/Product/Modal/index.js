@@ -26,21 +26,22 @@ const ModalAja = (props) => {
     const [picture, setPicture] = useState();
 
 
+    // console.log(props)
     const onSubmit = (e) => {
         const formData = new FormData();
         const json = JSON.stringify({
-            "id": this.props.id,
-            "productName": productName == null ? this.props.productName : productName,
-            "idCategory": idCategory == null ? this.props.idCategory : idCategory,
-            "stock": stock == null ? this.props.stock : stock,
-            "price": price == null ? this.props.price : price
+            "id": props.idPro,
+            "productName": productName == null ? data.productName : productName,
+            "idCategory": idCategory == null ? data.idCategory : idCategory,
+            "stock": stock == null ? data.stock : stock,
+            "price": price == null ? data.price : price
         });
         const blobDoc = new Blob([json], {
             type: 'application/json'
         });
 
         // formData.append('idCategory', this.state.idCategory)
-        formData.append("pictureUrl", picture)
+        formData.append("pictureUrl", picture == null ? data.pictureUrl : picture)
         formData.append('data', blobDoc)
         const config = {
             headers: {
@@ -72,17 +73,18 @@ const ModalAja = (props) => {
 
     useEffect(() => {
         getOptions()
-    })
+    }, [])
+
 
 
     useEffect(() => {
         axios.get('http://localhost:2222/api/product/' + props.idPro).then(res => {
             setData(res.data)
-            console.log(res.data)
+            console.log("ini adalah" + res.data)
         })
-    })
+    }, [])
 
-    console.log(data.id)
+    console.log("ini" + data)
     return (
         <span className="d-inline-block mb-2 mr-2">
                 <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
@@ -95,7 +97,7 @@ const ModalAja = (props) => {
                                             <FormGroup>
                                                 <Label for="name">Product Name</Label>
                                                 <Input type="text" name="name" id="name"
-                                                        placeholder={data.productName}
+                                                        value={data.productName}
                                                        onChange={(e)=>{setProductName(e.value)}}/>
                                             </FormGroup>
                                             <FormGroup>
