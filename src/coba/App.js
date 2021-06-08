@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
-...
+
 
 import AddTutorial from "./components/AddTutorial";
 import Tutorial from "./components/Tutorial";

@@ -10,7 +10,7 @@ import Main from './DemoPages/Main';
 import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
 import {BrowserRouter} from "react-router-dom";
-
+import New from "./coba/App"
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
@@ -26,7 +26,7 @@ const renderApp = Component => {
     );
 };
 
-renderApp(Main);
+renderApp(New);
 
 if (module.hot) {
     module.hot.accept('./DemoPages/Main', () => {
