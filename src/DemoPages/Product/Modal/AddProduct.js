@@ -11,7 +11,7 @@ const AddProduct = (props) => {
     const [stock, setStock] = useState(0);
     const [price, setPrice] = useState(0);
     const [picture, setPicture] = useState();
-    const [file, setFile] = useState()
+    const [img, setImg] = useState()
 
     const onSubmit = () => {
 
@@ -38,7 +38,13 @@ const AddProduct = (props) => {
 
         props.onChangeToggle(false)
         props.tampil();
+        setImg("");
+    }
 
+    const imagePreview = (e)=>{
+        const url=URL.createObjectURL(e.target.files[0]);
+        setImg(url);
+        setPicture(e.target.files[0])
     }
 
 
@@ -103,14 +109,17 @@ const AddProduct = (props) => {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label>Picture of Product</Label>
-                                    <Input type="file" name="picture" id="picture"
+                                    <Input type="file" name="picture" id="picture" accepts="image/*"
                                            placeholder="Input Picture of Product"
                                            onChange={(e) => {
-                                        setPicture(e.target.files[0])
+                                        imagePreview(e)
                                     }}
                                     />
+                                    <div style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>
+                                     <img src={img} style={{width:"100%"}}/></div>
                                 </FormGroup>
                             </Form>
+
                         </ModalBody>
                         <ModalFooter>
                             <Button color="link" onClick={() => {

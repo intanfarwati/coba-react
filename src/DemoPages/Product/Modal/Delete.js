@@ -26,7 +26,7 @@ const Delete = (props) => {
                             <Button color="link" onClick={() => {
                                 props.onChangeToggle(false)
                             }}>Cancel</Button>
-                            <Button color="primary" onClick={() => {
+                            <Button color="danger" onClick={() => {
                                 props.delete(props.data)
                                 // console.log(props.data)
                             }}>Delete</Button>

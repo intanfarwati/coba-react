@@ -59,6 +59,7 @@ const NewTable = () => {
         })
         axios.get("http://localhost:2222/api/product/getImage/" + val).then(res => {
             setPictureUrl(res.data)
+            console.log("ini itu picture"+res.data)
         }).catch()
     }
 
@@ -248,7 +249,7 @@ const NewTable = () => {
                     toggleEdit()
                 }} tampil={()=> {
                     tampil()
-                }} modal={modalEdit} data={dataa} pictureUrl={productData.pictureUrl} onChangeToggle={onChangeToggleEdit}/>
+                }} modal={modalEdit} data={dataa} pictureUrl={pictureUrl} onChangeToggle={onChangeToggleEdit}/>
                 <AddProduct toggle={() => {
                     toggleAdd()
                 }} tampil={()=> {
