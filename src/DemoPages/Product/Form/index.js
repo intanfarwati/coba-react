@@ -65,7 +65,7 @@ class FormProduct extends React.Component {
     async getOptions() {
         const res = await axios.get('http://localhost:2222/api/productcategory', {
             headers: {'Content-Type': 'application/json'}
-        })
+        }).then()
         const data = res.data
 
         const options = data.map(d => ({
