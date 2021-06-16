@@ -104,7 +104,7 @@ const Edit = (props) => {
                                            // value={productName == null ? props.data.productName : productName}
 
                                            onChange={(e) => {
-                                        setProductName(productName == null ? props.data.productName : productName)
+                                        setProductName(e.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>

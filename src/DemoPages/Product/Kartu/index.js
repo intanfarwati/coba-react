@@ -44,11 +44,11 @@ const ThisCard = (props) => {
     }
     return (
         <Fragment>
-            <Col md="3">
+            <Col sm="3">
                 <Card className="main-card mb-3">
                     <CardImg top width="100%"
                              src={"data:image/*;base64," + img}
-                             alt={props.title} style={{backgroundSize:"cover", height:"300px"}}/>
+                             alt={props.title} style={{backgroundSize:"cover", height:"300px"}} className="mt-3"/>
                     <CardBody>
                         <CardTitle>{props.title}</CardTitle>
                         <CardSubtitle>{props.category}
