@@ -1,7 +1,7 @@
 import React, {Component, Fragment, useEffect, useState} from 'react';
 import {Card, CardBody, CardImg, CardSubtitle, CardTitle, Col, CardFooter, Button, CardText} from "reactstrap";
 import axios from "axios";
-
+import AddToCard from "../Modal/AddToCart"
 
 //
 // var Id = props.id;
@@ -9,13 +9,24 @@ import axios from "axios";
 
 const ThisCard = (props) => {
     const [img, setImg] = useState("")
+    const [addToCartModal, setAddToCartModal] = useState("")
+
 
     useEffect(() => {
             axios.get('http://localhost:2222/api/product/getImage/' + props.id).then(res => {
                 setImg(res.data)
             })
-        }
+        }, []
     )
+
+    const toggleAddToCart = () => {
+        setAddToCartModal(!addToCartModal)
+        onSubmit();
+    }
+
+    const onChangeToggleAddToCart = () => {
+        setAddToCartModal(!addToCartModal)
+    }
 
 
     const onSubmit = () => {
@@ -48,7 +59,7 @@ const ThisCard = (props) => {
                 <Card className="main-card mb-3">
                     <CardImg top width="100%"
                              src={"data:image/*;base64," + img}
-                             alt={props.title} style={{backgroundSize:"cover", height:"300px"}} className="mt-3"/>
+                             alt={props.title} style={{backgroundSize: "cover", height: "300px"}} className="mt-3"/>
                     <CardBody>
                         <CardTitle>{props.title}</CardTitle>
                         <CardSubtitle>{props.category}
@@ -59,10 +70,13 @@ const ThisCard = (props) => {
                         </CardText>
                     </CardBody>
                     <CardFooter>
-                        <Button color="warning" type="button" onClick={onSubmit}>Add to Cart</Button>
+                        <Button color="warning" type="button" onClick={()=>toggleAddToCart()}>Add to Cart</Button>
                     </CardFooter>
                 </Card>
             </Col>
+            <AddToCard toggle={() => {
+                toggleAddToCart()
+            }} modal={addToCartModal} onChangeToggle={onChangeToggleAddToCart}/>
         </Fragment>
     )
 }

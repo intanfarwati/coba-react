@@ -140,9 +140,9 @@ const NewTable = () => {
 
                         <CardBody>
                             <CardTitle style={{paddingBottom:"20px"}}><h2>Data of All Products</h2></CardTitle>
-                            <Button style={{marginBottom:"20px", display:"flex"}} color="primary" onClick={(e) => {
+                            <Button style={{marginBottom:"20px", display:"flex", minWidth:"200px"}} color="primary" onClick={(e) => {
                                 toggleAdd()
-                            }}><p style={{fontSize:"18px", textAlign:"center"}}>Add Product</p></Button>
+                            }}><p style={{margin:"auto", fontSize:"18px", textAlign:"center"}}>Add Product</p></Button>
                             <ReactTable
                                 data={productData}
                                 filterable
