@@ -70,7 +70,7 @@ const ThisCard = (props) => {
                         </CardText>
                     </CardBody>
                     <CardFooter>
-                        <Button color="warning" type="button" onClick={()=>toggleAddToCart()}>Add to Cart</Button>
+                        <Button style={{margin:"auto"}}color="warning" type="button" onClick={()=>toggleAddToCart()}>Add to Cart</Button>
                     </CardFooter>
                 </Card>
             </Col>
