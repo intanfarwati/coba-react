@@ -267,4 +267,4 @@ const NewTable = () => {
 
 }
 
-export default NewTable;
+export default NewTable
