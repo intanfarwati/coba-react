@@ -15,7 +15,7 @@ import axios from "axios";
 import Select from "react-select";
 
 const Edit = (props) => {
-    console.log("data:/image/*;base64," + props.pictureUrl)
+    // console.log("data:/image/*;base64," + props.pictureUrl)
     const [idCategory, setIdCategory] = useState(props.data.idCategory)
     const [selectOptions, setSelectOptions] = useState([]);
     const [productName, setProductName] = useState(props.data.productName);
@@ -48,7 +48,7 @@ const Edit = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        console.log("ini adalah "+ formData)
+        console.log("ini adalah "+ price)
         axios.post("http://localhost:2222/api/product/save", formData, config)
             .then(()=>{tampil()})
 
@@ -98,19 +98,19 @@ const Edit = (props) => {
                                         <CardTitle>Input Product Data</CardTitle>
                                         <Form>
                                 <FormGroup>
-                                    <Label for="name">Product Name {props.data.productName}</Label>
-                                    <Input type="text" name="name" id="name"
+                                    <Label for="productName">Product Name </Label>
+                                    <Input type="text" name="productName" id="productName"
                                            placeholder={props.data.productName}
-                                           // value={productName == null ? props.data.productName : productName}
-
+                                           // value={productName == null ?  props.data.productName : productName}
                                            onChange={(e) => {
-                                        setProductName(e.value)
-                                    }}/>
+                                               setProductName(e.target.value)
+                                           }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="category">Category Product</Label>
+                                    <Label for="idCategory">Category Product</Label>
                                     <Select name="idCategory" id="idCategory"
                                             options={selectOptions}
+                                            placeholder={props.data.categoryName}
                                         // onChange={handleChangeSelect.bind(this)}
                                             onChange={(e) => {
                                                 setIdCategory(e.value)
@@ -120,14 +120,14 @@ const Edit = (props) => {
                                 <FormGroup>
                                     <Label for="stock">Stock</Label>
                                     <Input type="number" name="stock" id="stock"
-                                           placeholder="Input Stock of Product" onChange={(e) => {
+                                           placeholder={props.data.stock} onChange={(e) => {
                                         setStock(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="price">Price</Label>
                                     <Input type="text" name="price" id="price"
-                                           placeholder="Input Price of Product" onChange={(e) => {
+                                           placeholder={props.data.price} onChange={(e) => {
                                         setPrice(e.target.value)
                                     }}/>
                                 </FormGroup>
