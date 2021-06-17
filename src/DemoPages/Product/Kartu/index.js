@@ -55,7 +55,7 @@ const ThisCard = (props) => {
     }
     return (
         <Fragment>
-            <Col sm="3">
+            <Col className="col-sm-3">
                 <Card className="main-card mb-3">
                     <CardImg top width="100%"
                              src={"data:image/*;base64," + img}
@@ -72,11 +72,12 @@ const ThisCard = (props) => {
                     <CardFooter>
                         <Button style={{margin:"auto"}}color="warning" type="button" onClick={()=>toggleAddToCart()}>Add to Cart</Button>
                     </CardFooter>
+                    <AddToCard toggle={() => {
+                        toggleAddToCart()
+                    }} modal={addToCartModal} onChangeToggle={onChangeToggleAddToCart}/>
                 </Card>
             </Col>
-            <AddToCard toggle={() => {
-                toggleAddToCart()
-            }} modal={addToCartModal} onChangeToggle={onChangeToggleAddToCart}/>
+
         </Fragment>
     )
 }
