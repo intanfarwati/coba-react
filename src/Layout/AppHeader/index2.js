@@ -13,8 +13,12 @@ import UserBox from './Components/UserBox';
 import HeaderRightDrawer from "./Components/HeaderRightDrawer";
 
 import HeaderDots from "./Components/HeaderDots";
+import Cari from "./Components/Cari";
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         let {
             headerBackgroundColor,
@@ -45,12 +49,22 @@ class Header extends React.Component {
                             <MegaMenu/>
                         </div>
 
-                        <div className="app-header-right">
+                        {/*<div className="app-header-right">*/}
 
-                            <SearchBox/>
-                            <HeaderDots/>
-                            <UserBox/>
-                        </div>
+                            {/*<SearchBox*/}
+                            {/*    handleChangeSearch={*/}
+                            {/*        this.props.handleChangeSearch*/}
+                            {/*    }*/}
+                            {/*           handleSearch={*/}
+                            {/*               this.props.handleSearch*/}
+                            {/*           }*/}
+                            {/*           />*/}
+                            {/*<Cari handleChangeSearch={this.props.handleChangeSearch}*/}
+                            {/*      handleSearch={this.props.handleSearch}*/}
+                            {/*    activeSearch={this.props.activeSearch}/>*/}
+                            {/*<HeaderDots/>*/}
+                            {/*<UserBox/>*/}
+                        {/*</div>*/}
                     </div>
                 </CSSTransitionGroup>
             </Fragment>

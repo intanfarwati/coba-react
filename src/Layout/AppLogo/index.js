@@ -10,6 +10,7 @@ import {
     setEnableMobileMenu,
     setEnableMobileMenuSmall,
 } from '../../reducers/ThemeOptions';
+import logo from "../../assets/utils/images/daily.jpg";
 
 class HeaderLogo extends React.Component {
     constructor(props) {
@@ -40,8 +41,11 @@ class HeaderLogo extends React.Component {
         return (
             <Fragment>
                 <div className="app-header__logo">
-                    <div className="logo-src"/>
-                    <Link to="/product/home" />
+                    <div>
+                        <Link to={"/product/home"}>
+                            <img style={{paddingLeft:"40px"}} src={logo} sizes={1} />
+                        </Link>
+                    </div>
                     {/*<div className="header__pane ml-auto">*/}
                     {/*    <div onClick={this.toggleEnableClosedSidebar}>*/}
                     {/*    <Slider */}

@@ -140,7 +140,7 @@ const NewTable = () => {
 
                         <CardBody>
                             <CardTitle style={{paddingBottom:"20px"}}><h2>Data of All Products</h2></CardTitle>
-                            <Button style={{marginBottom:"20px", display:"flex", minWidth:"200px"}} color="primary" onClick={(e) => {
+                            <Button style={{marginBottom:"20px", display:"flex", minWidth:"200px", backgroundColor:"#8f10de"}}onClick={(e) => {
                                 toggleAdd()
                             }}><p style={{margin:"auto", fontSize:"18px", textAlign:"center"}}>Add Product</p></Button>
                             <ReactTable
@@ -230,10 +230,8 @@ const NewTable = () => {
                                 defaultPageSize={10}
                                 className="-striped -highlight"
                             />
-                            <CardTitle style={{fontSize: "18px"}}><br/>Download the report of all products
-                                uploaded:<br/></CardTitle>
-
-                            <br/>
+                            <CardTitle style={{fontSize: "18px", marginBottom:"20px", marginTop:"20px"}}>
+                                Download the report of all products uploaded:</CardTitle>
                             <Button type="button" className="mt-1" color="danger"
                                     onClick={getPDF} style={{fontSize: "20px", margin: "5px"}}>
                                 <FontAwesomeIcon icon={faFilePdf}/> <span style={{fontSize: "15px"}}>PDF</span>

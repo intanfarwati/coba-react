@@ -8,13 +8,15 @@ import AddProduct from "../Form";
 import Tabel from "../Tabel";
 import TabelBaru from "../Tabel/TabelBaru";
 import NewTable from "../Tabel/NewTable";
-
+import HeaderBaru from "../../../Layout/AppHeader/HeaderBaru";
 import MakeUp from "../Home/makeup"
 import SkinCare from "../Home/skincare";
 import BodyCare from "../Home/bodycare";
 import HomePage from "../Home";
-import {Route} from "react-router-dom";
+import Search from "../Home/search";
+import {Link, Route} from "react-router-dom";
 import FormElementsControls from "../../Forms/Elements/Controls";
+import logo from "../../../assets/utils/images/daily.jpg";
 
 const Home = ({match}) => {
     return (
@@ -27,6 +29,7 @@ const Home = ({match}) => {
                 transitionEnter={false}
                 transitionLeave={false}>
                 <AppHeader/>
+
                 <div className="app-main">
                     <div className="app-main__inner">
 
@@ -47,6 +50,9 @@ const Home = ({match}) => {
 
                         {/*Body Care Product*/}
                         <Route path={`${match.url}/body-care`} component={BodyCare}/>
+
+                        {/*Search Product*/}
+                        <Route path={`${match.url}/search`} component={Search}/>
                     </div>
                 </div>
             </CSSTransitionGroup>

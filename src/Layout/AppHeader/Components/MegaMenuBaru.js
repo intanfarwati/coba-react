@@ -46,85 +46,75 @@ class MegaMenu extends React.Component {
                 <Nav className="header-megamenu">
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav>
-                            <i className="nav-link-icon pe-7s-gift"> </i>
-                            <Link to="/about" style={{textDecoration:"none"}}>About Us</Link>
-                            {/*<FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>*/}
-                        </DropdownToggle>
-                    </UncontrolledDropdown>
-                    <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav>
-                            <i className="nav-link-icon pe-7s-gift"> </i>
-                            Products
-                            <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
+                            <div style={{display: "flex"}}>
+                                <div>
+                                    <i className="nav-link-icon pe-7s-gift"> </i>
+                                </div>
+                                <div style={{lineHeight: "20px", fontSize: "17px"}}>
+                                    {/*<p className="nav-item" style={{lineHeight:"20px", fontSize:"17px"}}>Products</p>*/}
+                                    Products
+                                </div>
+                                <div>
+                                    <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
+                                </div>
+                            </div>
+
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-rounded dropdown-menu-lg rm-pointers">
-                            <div className="dropdown-menu-header">
-                                <div className="dropdown-menu-header-inner bg-success">
-                                    <div className="menu-header-image opacity-1"
-                                         style={{
-                                             backgroundImage: 'url(' + bg3 + ')'
-                                         }}
-                                    ></div>
+                            <div className="dropdown-menu-header"
+                                 style={{backgroundColor: "#d099f2"}}>
+                                <div className="dropdown-menu-header-inner">
                                     <div className="menu-header-content text-left">
-                                        <h5 className="menu-header-title">Products Daily You</h5>
-
+                                        <h5 className="menu-header-title" style={{color: "#5f0963"}}>Products Daily
+                                            You</h5>
                                     </div>
                                 </div>
                             </div>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                <Link to="/product/make-up" style={{textDecoration:"none"}}>Make Up</Link>
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                <Link to="/product/skin-care" style={{textDecoration:"none"}}>Skin Care</Link>
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                <Link to="/product/body-care" style={{textDecoration:"none"}}>Body Care</Link>
-                            </DropdownItem>
+                            <Link to="/product/make-up" style={{textDecoration: "none", color: "#5f0963"}}>
+                                <DropdownItem>
+                                    Make Up
+                                </DropdownItem>
+                            </Link>
+                            <Link to="/product/skin-care" style={{textDecoration: "none", color: "#5f0963"}}>
+                                <DropdownItem>
+                                    Skin Care
+                                </DropdownItem>
+                            </Link>
+                            <Link to="/product/body-care" style={{textDecoration: "none", color: "#5f0963"}}>
+                                <DropdownItem>
+                                    Body Care
+                                </DropdownItem>
+                            </Link>
 
                         </DropdownMenu>
                     </UncontrolledDropdown>
-                    <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav>
-                            <i className="nav-link-icon pe-7s-gift"> </i>
-                            Activities
-                            <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
-                        </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-rounded dropdown-menu-lg rm-pointers">
-                            <div className="dropdown-menu-header">
-                                <div className="dropdown-menu-header-inner bg-success">
-                                    <div className="menu-header-image opacity-1"
-                                         style={{
-                                             backgroundImage: 'url(' + bg2 + ')'
-                                         }}
-                                    ></div>
-                                    <div className="menu-header-content text-left">
-                                        <h5 className="menu-header-title">Activities Daily You</h5>
-
-                                    </div>
+                    <NavItem>
+                        <NavLink href="/#/product/table">
+                            <div style={{display: "flex"}}>
+                                <div>
+                                    <i className="nav-link-icon pe-7s-note"> </i>
+                                </div>
+                                <div style={{lineHeight: "20px", fontSize: "17px"}}>
+                                    {/*<p className="nav-item" style={{lineHeight:"20px", fontSize:"17px"}}>Products</p>*/}
+                                    Manage Products
                                 </div>
                             </div>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                Education Pillars
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                Health Pillars
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                Women Empowerment's Pillars
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                Environment Pillars
-                            </DropdownItem>
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink href="/#/product/search">
+                            <div style={{display: "flex"}}>
+                                <div>
+                                    <i className="nav-link-icon pe-7s-search"> </i>
+                                </div>
+                                <div style={{lineHeight: "20px", fontSize: "17px"}}>
+                                    {/*<p className="nav-item" style={{lineHeight:"20px", fontSize:"17px"}}>Products</p>*/}
+                                    Search Products
+                                </div>
+                            </div>
+                        </NavLink>
+                    </NavItem>
 
-                        </DropdownMenu>
-                    </UncontrolledDropdown>
 
                     {/*<NavItem>*/}
                     {/*    <NavLink href="#" onClick={this.toggle} id="PopoverMegaMenu">*/}

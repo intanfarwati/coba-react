@@ -6,23 +6,28 @@ class SearchBox extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            activeSearch: false
-        };
+        // this.state = {
+        //     activeSearch: false
+        // };
     }
 
     render() {
         return (
             <Fragment>
                 <div className={cx("search-wrapper", {
-                    'active': this.state.activeSearch
+                    'active': true
                 })}>
                     <div className="input-holder">
-                        <input type="text" className="search-input" placeholder="Type to search"/>
-                        <button onClick={() => this.setState({activeSearch: !this.state.activeSearch})}
+                        <input type="text" className="search-input" placeholder="Type to search"
+                               onChange={
+                                   this.props.handleChangeSearch
+                               }/>
+                        <button onClick={
+                            // console.log("ada ga ya")}
+                            this.props.handleSearch
+                        }
                                 className="search-icon"><span/></button>
                     </div>
-                    <button onClick={() => this.setState({activeSearch: !this.state.activeSearch})} className="close"/>
                 </div>
             </Fragment>
         )
