@@ -6,9 +6,9 @@ class SearchBox extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.state = {
-        //     activeSearch: false
-        // };
+        this.state = {
+            username: localStorage.getItem("username")
+        };
     }
 
     render() {

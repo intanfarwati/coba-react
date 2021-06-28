@@ -18,6 +18,7 @@ import AddProduct from "../Modal/AddProduct";
 import Delete from "../Modal/Delete"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faFileExcel, faFilePdf, faTrash} from "@fortawesome/free-solid-svg-icons";
+import swal from "sweetalert";
 
 
 const NewTable = () => {
@@ -70,6 +71,15 @@ const NewTable = () => {
         ).catch(err => console.log(err))
         setDel(id)
         onChangeToggleDelete(false)
+        swal(
+            {
+                title: 'Deleted',
+                text: "Your product has been deleted!",
+                icon: 'success',
+                buttons: false,
+                timer: 2000
+            });
+
     }
 
     const onChangeToggleAdd = () => {
@@ -99,6 +109,13 @@ const NewTable = () => {
             document.body.appendChild(link);
             link.click();
         });
+
+        swal(
+            {
+                title: 'Downloaded',
+                text: "Please wait until the download process is finished!",
+                icon: 'success',
+            });
     };
 
     const getEXCEL = async () => {
@@ -115,6 +132,12 @@ const NewTable = () => {
             console.log(document.body.appendChild(link))
             link.click();
         });
+        swal(
+            {
+                title: 'Downloaded',
+                text: "Please wait until the download process is finished!",
+                icon: 'success',
+            });
     };
 
 

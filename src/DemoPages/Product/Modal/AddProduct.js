@@ -3,6 +3,7 @@ import axios from "axios";
 import {Button, CardTitle, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {IoIosSettings} from "react-icons/io";
 import Select from "react-select";
+import swal from "sweetalert";
 
 const AddProduct = (props) => {
     const [idCategory, setIdCategory] = useState(0)
@@ -39,6 +40,14 @@ const AddProduct = (props) => {
         props.onChangeToggle(false)
         props.tampil();
         setImg("");
+        swal(
+            {
+                title: 'Success',
+                text: "Your product has been saved!",
+                icon: 'success',
+                buttons: false,
+                timer: 2000
+            });
     }
 
     const imagePreview = (e)=>{

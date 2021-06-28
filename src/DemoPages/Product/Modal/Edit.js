@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import Select from "react-select";
+import swal from "sweetalert";
 
 const Edit = (props) => {
     // console.log("data:/image/*;base64," + props.pictureUrl)
@@ -48,21 +49,34 @@ const Edit = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        console.log("ini adalah "+ price)
+        console.log("ini adalah " + price)
         axios.post("http://localhost:2222/api/product/save", formData, config)
-            .then(()=>{tampil()})
+            .then(() => {
+                tampil()
+            })
 
         props.onChangeToggle(false)
         setImg("");
+        swal(
+            {
+                title: 'Success',
+                text: "Your product has been saved!",
+                icon: 'success',
+                buttons: false,
+                timer: 2000,
+            });
+
     }
 
-    const imagePreview = (e)=>{
-        const url=URL.createObjectURL(e.target.files[0]);
+    const imagePreview = (e) => {
+        const url = URL.createObjectURL(e.target.files[0]);
         setImg(url);
         setPictureUrl(e.target.files[0])
     }
 
-    const tampil = () =>{props.tampil()}
+    const tampil = () => {
+        props.tampil()
+    }
 
     const getOptions = () => {
         axios.get('http://localhost:2222/api/productcategory', {
@@ -79,7 +93,6 @@ const Edit = (props) => {
 
         console.log(selectOptions)
     }
-
 
 
     useEffect(() => {
@@ -101,7 +114,7 @@ const Edit = (props) => {
                                     <Label for="productName">Product Name </Label>
                                     <Input type="text" name="productName" id="productName"
                                            placeholder={props.data.productName}
-                                           // value={productName == null ?  props.data.productName : productName}
+                                        // value={productName == null ?  props.data.productName : productName}
                                            onChange={(e) => {
                                                setProductName(e.target.value)
                                            }}/>
@@ -139,8 +152,8 @@ const Edit = (props) => {
                                                imagePreview(e)
                                            }}
                                     />
-                                    <div style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>
-                                     <img src={img} style={{width:"100%"}}/></div>
+                                    <div style={{display: "flex", justifyContent: "center", marginTop: "20px"}}>
+                                     <img src={img} style={{width: "100%"}}/></div>
                                 </FormGroup>
                                         </Form>
                                     </CardBody>

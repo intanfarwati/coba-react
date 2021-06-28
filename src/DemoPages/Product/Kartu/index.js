@@ -2,6 +2,7 @@ import React, {Component, Fragment, useEffect, useState} from 'react';
 import {Card, CardBody, CardImg, CardSubtitle, CardTitle, Col, CardFooter, Button, CardText} from "reactstrap";
 import axios from "axios";
 import AddToCard from "../Modal/AddToCart"
+import swal from "sweetalert";
 
 //
 // var Id = props.id;
@@ -26,6 +27,17 @@ const ThisCard = (props) => {
 
     const onChangeToggleAddToCart = () => {
         setAddToCartModal(!addToCartModal)
+    }
+
+    const sweetAlert = () => {
+        swal({
+            title: 'Congratulation',
+            text: "Your product has been added to your cart!",
+            icon: 'success',
+            buttons:false,
+            timer: 2500
+        });
+        onSubmit();
     }
 
 
@@ -70,7 +82,7 @@ const ThisCard = (props) => {
                         </CardText>
                     </CardBody>
                     <CardFooter>
-                        <Button style={{margin:"auto", backgroundColor:"#8f10de", outlineColor:"none"}} type="button" onClick={()=>toggleAddToCart()}>Add to Cart</Button>
+                        <Button style={{margin:"auto", backgroundColor:"#8f10de", outlineColor:"none", fontSize:"14px"}} type="button" onClick={()=>sweetAlert()}>Add to Cart</Button>
                     </CardFooter>
                     <AddToCard toggle={() => {
                         toggleAddToCart()
